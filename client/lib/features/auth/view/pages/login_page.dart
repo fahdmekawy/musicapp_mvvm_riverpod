@@ -30,7 +30,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(authViewModelProvider)?.isLoading == true;
+    final isLoading = ref.watch(
+        authViewModelProvider.select((value) => value?.isLoading == true));
 
     ref.listen(authViewModelProvider, (previous, next) {
       next?.when(
@@ -83,6 +84,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 .loginUser(
                                     email: _emailController.text.trim(),
                                     password: _passwordController.text.trim());
+                          } else {
+                            showSnackBack(
+                              context,
+                              'Missing Fields!',
+                              isError: true,
+                            );
                           }
                         },
                         buttonText: 'Sign In',

@@ -32,7 +32,8 @@ class _SignupPageState extends ConsumerState<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(authViewModelProvider)?.isLoading == true;
+    final isLoading = ref.watch(
+        authViewModelProvider.select((value) => value?.isLoading == true));
 
     ref.listen(authViewModelProvider, (previous, next) {
       next?.when(
@@ -92,6 +93,12 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                                   email: _emailController.text.trim(),
                                   password: _passwordController.text.trim(),
                                 );
+                          } else {
+                            showSnackBack(
+                              context,
+                              'Missing fields',
+                              isError: true,
+                            );
                           }
                         },
                         buttonText: 'Sign Up',
