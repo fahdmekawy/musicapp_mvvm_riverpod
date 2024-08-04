@@ -1,3 +1,5 @@
-abstract interface class PickerInterface {
-  void pickFile();
+import 'dart:io';
+
+abstract interface class FilePickerInterface {
+  Future<File?> pickFile();
 }

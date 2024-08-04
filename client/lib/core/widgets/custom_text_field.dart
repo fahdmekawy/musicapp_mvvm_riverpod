@@ -3,18 +3,24 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String? hintText;
   final bool? obscureText;
-  final TextEditingController textEditingController;
+  final bool? readOnly;
+  final TextEditingController? textEditingController;
+  final VoidCallback? onTap;
 
   const CustomTextField({
     super.key,
     this.hintText,
     this.obscureText = false,
-    required this.textEditingController,
+    this.textEditingController,
+    this.readOnly = false,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: onTap,
+      readOnly: readOnly!,
       controller: textEditingController,
       obscureText: obscureText!,
       obscuringCharacter: 'X',

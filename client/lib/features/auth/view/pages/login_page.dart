@@ -1,13 +1,14 @@
 import 'package:client/core/extensions/context_extension.dart';
 import 'package:client/core/widgets/loader.dart';
 import 'package:client/features/auth/view/pages/signup_page.dart';
+import 'package:client/features/home/view/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/show_snack_bar.dart';
 import '../../view_model/auth_view_model.dart';
 import '../widgets/auth_gradient_button.dart';
-import '../widgets/custom_text_field.dart';
+import '../../../../core/widgets/custom_text_field.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -36,7 +37,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     ref.listen(authViewModelProvider, (previous, next) {
       next?.when(
         data: (data) {
-          // TO DO Navigate to home page
+          context.navigateAndReplace(const HomePage());
           showSnackBack(context, 'Login successfully');
         },
         error: (error, stack) {

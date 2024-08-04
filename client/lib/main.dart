@@ -1,5 +1,6 @@
 import 'package:client/core/providers/current_user_notifier.dart';
 import 'package:client/features/auth/view_model/auth_view_model.dart';
+import 'package:client/features/home/view/pages/upload_song_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/theme/theme.dart';
@@ -12,7 +13,6 @@ void main() async {
   await container.read(authViewModelProvider.notifier).initSharedPreferences();
   final userModel =
       await container.read(authViewModelProvider.notifier).getData();
-  print(userModel);
   runApp(
     UncontrolledProviderScope(
       container: container,
@@ -29,7 +29,7 @@ class MyApp extends ConsumerWidget {
     final currentUser = ref.watch(currentUserNotifierProvider);
     return MaterialApp(
       theme: AppTheme.darkThemeMode,
-      home: currentUser != null ? const HomePage() : const LoginPage(),
+      home: currentUser != null ? const UploadSongPage() : const LoginPage(),
     );
   }
 }

@@ -1,6 +1,21 @@
-import 'package:client/core/utils/file_picker.dart';
+import 'dart:io';
 
-class PickAudio implements PickerInterface {
+import 'package:client/core/utils/file_picker.dart';
+import 'package:file_picker/file_picker.dart';
+
+class AudioPicker implements FilePickerInterface {
   @override
-  void pickFile() {}
+  Future<File?> pickFile() async {
+    try {
+      final filePickerRes =
+          await FilePicker.platform.pickFiles(type: FileType.audio);
+
+      if (filePickerRes != null) {
+        return File(filePickerRes.files.first.xFile.path);
+      }
+    } catch (e) {
+      return null;
+    }
+    return null;
+  }
 }

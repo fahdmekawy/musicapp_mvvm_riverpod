@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/loader.dart';
 import '../widgets/auth_gradient_button.dart';
-import '../widgets/custom_text_field.dart';
+import '../../../../core/widgets/custom_text_field.dart';
 
 class SignupPage extends ConsumerStatefulWidget {
   const SignupPage({super.key});
